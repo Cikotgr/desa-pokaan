@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('judul');
             $table->text('deskripsi');
-            $table->string('gambar');
+            $table->string('gambar')->nullable();
             $table->enum('jenis', ['berita', 'pengumuman','agenda']);
             $table->string('lokasi')->nullable();
         });

@@ -47,7 +47,7 @@
                             <td class="min-w-36">{{$item->judul}}</td>
                             <td>
                                 <button class="btn h-24" onclick="modal_{{$item->id}}.showModal()">
-                                    <div class="w-16 h-10 md:w-28 md:h-16" style="background-image: url('{{$item->gambar}}'); background-size: cover; background-position: center"></div>
+                                    <div class="w-16 h-10 md:w-28 md:h-16" style="background-image: url('{{asset($item->gambar)}}'); background-size: cover; background-position: center"></div>
                                 </button>
                             </td>
                             <td class="min-w-96">{{ \Illuminate\Support\Str::limit($item->deskripsi, 500) }}</td>
@@ -62,7 +62,7 @@
                                         
                                     </button>       
                                 </form>
-                                <form action="{{ route('admin.berita.show',$item->id) }}">
+                                <form action="{{ route('admin.berita.delete',$item->id) }}">
                                     @csrf
                                     <button class="btn">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -74,7 +74,7 @@
                         </tr>
                         <dialog id="modal_{{$item->id}}" class="modal">
                             <div class="modal-box">
-                                <div class="w-full h-56" style="background-image: url('{{$item->gambar}}') ; background-position: center"></div>
+                                <div class="w-full h-56" style="background-image: url('{{asset($item->gambar)}}') ; background-position: center; background-size: cover"></div>
                                 <div class="modal-action">
                                 <form method="dialog">
                                     <!-- if there is a button in form, it will close the modal -->

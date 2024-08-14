@@ -25,7 +25,7 @@
             @foreach ($berita as $item)
             <div class="card card-compact md:card-side bg-base-100 shadow-xl mt-6">
                 <figure>
-                <div class="h-36 w-full md:w-96 md:h-60" style="background-image: url({{$item->gambar}}); background-size: cover; background-position: center"></div>
+                <div class="h-36 w-full md:w-96 md:h-60" style="background-image: url('{{asset($item->gambar)}}'); background-size: cover; background-position: center"></div>
                 </figure>
                 <div class="card-body md:max-w-xl">
                 <a class="font-bold link link-hover text-lg md:card-title">{{$item->judul}}</a>

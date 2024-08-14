@@ -31,8 +31,8 @@
                         src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
                         alt="Shoes" />
                     </figure>
-                    <div class="card-body">
-                    <h2 class="card-title">{{$item->nama}}!</h2>
+                    <div class="card-body h-56">
+                    <h2 class="card-title text-base md:text-xl">{{ \Illuminate\Support\Str::limit($item->nama, 50) }}</h2>
                     <p>{{$item->harga}}</p>
                     <div class="card-actions justify-end">
                         <button class="btn btn-primary">Beli Sekarang</button>

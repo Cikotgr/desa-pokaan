@@ -26,21 +26,28 @@ class AdminBeritaController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'judul' => 'required',
             'deskripsi' => 'required',
             'gambar' => 'required',
-            'jenis' => 'required',
-            'lokasi' => 'required',
+            'jenis' => 'required'
         ]);
 
-        $berita = new Informasi();
-        $berita->judul = $request->judul;
-        $berita->deskripsi = $request->deskripsi;
-        $berita->gambar = $request->gambar;
-        $berita->jenis = $request->jenis;
-        $berita->lokasi = $request->lokasi;
-        $berita->save();
+        $gambar = $request->file('gambar');
+        $gambar->storeAs('public/berita',$gambar->getClientOriginalName());
+        $patch = 'storage/berita/'.$gambar->getClientOriginalName();
+        try{
+            Informasi::create([
+                'judul' => $request->judul,
+                'deskripsi' => $request->deskripsi,
+                'gambar' => $patch,
+                'jenis' => $request->jenis
+            ]);
+        }catch(\Exception $e){
+            return redirect()->back()->with('error',$e->getMessage());
+        }
+        
 
         return redirect()->route('admin.berita.index');
     }
@@ -66,6 +73,7 @@ class AdminBeritaController extends Controller
     {
         return view('admin.berita.create');
     }
+
 
     public function delete($id)
     {

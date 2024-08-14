@@ -78,6 +78,12 @@
                     </details>
                     </li>
                     <li><a href="{{route('produk.index')}}" class="font-bold text-lg {{Route::is('produk.index') ? 'active' : ''}}">Produk</a></li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="btn btn-sm">Logout</button>
+                        </form>
+                    </li>
                     </ul>
                 </div>
             </div>
@@ -109,6 +115,12 @@
                 </details>
                 </li>
                 <li><a href="{{route('produk.index')}}" class="font-bold text-lg {{Route::is('produk.index') ? 'active' : ''}}" >Produk</a></li>
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn">Logout</button>
+                    </form>
+                </li>
             </ul>
             </div>
         </div>        

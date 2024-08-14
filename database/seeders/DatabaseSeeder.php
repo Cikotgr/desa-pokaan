@@ -15,13 +15,19 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // User::factory()->create([
+        //     'admin' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
+
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@desapokaan.situbondokab.go.id',
+            'password' => bcrypt('Pokaan899_'),
         ]);
 
-        $this->call(PesanSeeder::class);
-        $this->call(InformasiSeeder::class);
-        $this->call(ProdukSeeder::class);
+        // $this->call(PesanSeeder::class);
+        // $this->call(InformasiSeeder::class);
+        // $this->call(ProdukSeeder::class);
     }
 }

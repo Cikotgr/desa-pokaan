@@ -30,7 +30,7 @@
             <div class="main-news flex flex-col p-4 col-span-4">
                 <h1 class="font-bold text-2xl">{{$berita->judul}}</h1>
                 <div class="divider"></div>
-                <div class="w-full h-56 md:h-96 " style="background-image: url('{{$berita->gambar}}'); background-size: cover; background-position: center"></div>
+                <div class="w-full h-56 md:h-96 " style="background-image: url('{{asset($berita->gambar)}}'); background-size: cover; background-position: center"></div>
                 <article class="text-justify prose-base md:prose-lg mt-12">
                     {{ $berita->deskripsi }}
                 </article>
@@ -45,7 +45,7 @@
                             @foreach ($latest as $item)
                                 <div class="flex flex-row mt-2">
                                     <figure>
-                                        <div class="h-36 w-64" style="background-image: url('{{$item->gambar}}'); background-size: cover; background-position: center"></div>
+                                        <div class="h-36 w-64" style="background-image: url('{{asset($item->gambar)}}'); background-size: cover; background-position: center"></div>
                                     </figure>
                                     <a href="{{route('berita.view', $item->id)}}" class="w-64 font-bold text-base mt-4 ms-2 link link-hover">{{$item->judul}}</a>
                                 </div>
