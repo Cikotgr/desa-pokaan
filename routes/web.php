@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminBeritaController;
+use App\Http\Controllers\AdminGaleriController;
 use App\Http\Controllers\AdminPesanController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\GaleriController;
@@ -51,6 +52,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/berita/{id}',[AdminBeritaController::class, 'delete'])->name('admin.berita.delete');
 
     Route::get('/admin/pengumuman',[AdminBeritaController::class, 'pengumuman'])->name('admin.pengumuman');
+
+    Route::get('/admin/galeri',[AdminGaleriController::class, 'index'])->name('admin.galeri');
+    Route::get('/admin/galeri/create',[AdminGaleriController::class, 'create'])->name('admin.galeri.create');
+    Route::post('/admin/galeri',[AdminGaleriController::class, 'store'])->name('admin.galeri.store');
 
 });
 
