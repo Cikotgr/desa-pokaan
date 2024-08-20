@@ -28,14 +28,14 @@
                 <div class="card-compact bg-base-100 w-44 md:w-72  shadow-xl">
                     <figure>
                     <img
-                        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                        src="{{asset($item->gambar)}}"
                         alt="Shoes" />
                     </figure>
-                    <div class="card-body h-56">
-                    <h2 class="card-title text-base md:text-xl">{{ \Illuminate\Support\Str::limit($item->nama, 50) }}</h2>
-                    <p>{{$item->harga}}</p>
+                    <div class="card-body h-44 md:h-52">
+                    <h2 class="card-title text-sm md:text-xl">{{ \Illuminate\Support\Str::limit($item->nama, 40) }}</h2>
+                    <p class="content-end font-bold mb-2">{{ \Illuminate\Support\Str::limit($item->toko, 30) }}</p>
                     <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Beli Sekarang</button>
+                        <a href="{{route('produk.show',$item->id)}}" class="btn btn-sm md:btn-md  btn-primary">Lihat produk</a>
                     </div>
                     </div>
                 </div>

@@ -4,10 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\DB;
 
-class InformasiSeeder extends Seeder
+class GaleriSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,17 +17,14 @@ class InformasiSeeder extends Seeder
         $faker = Faker::create('id_ID');
 
         foreach (range(1, 20) as $index) {
-            $jenis = $faker->randomElement(['berita', 'pengumuman', 'agenda']);
-            DB::table('informasi')->insert([
+            DB::table('galeri')->insert([
                 'judul' => $faker->sentence,
-                'deskripsi' => $faker->paragraph($jenis == 'agenda' ? 3 : 10),
-                'gambar' => $faker->imageUrl,
-                'jenis' => $jenis,
-                'lokasi' => $faker->city,
-                'tanggal' => $faker->date,
+                'foto' => $faker->imageUrl,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
         }
+
+
     }
 }

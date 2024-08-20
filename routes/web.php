@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminBeritaController;
 use App\Http\Controllers\AdminPesanController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfileController;
@@ -19,6 +20,8 @@ Route::get('/berita/{id}',[BeritaController::class, 'show'])->name('berita.view'
 
 Route::get('/produk/{id}',[ProdukController::class, 'show'])->name('produk.show');
 Route::get('/produk',[ProdukController::class, 'index'])->name('produk.index');
+
+Route::get('/galeri',[GaleriController::class, 'index'])->name('galeri.index');
 
 
 

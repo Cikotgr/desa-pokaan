@@ -21,7 +21,7 @@ class ProdukSeeder extends Seeder
                 'nama' => $faker->sentence,
                 'harga' => $faker->randomNumber(5),
                 'gambar' => $faker->imageUrl,
-                'deskripsi' => $faker->paragraph(100),
+                'deskripsi' => $faker->paragraph(8),
                 'jenis' => $faker->randomElement(['makanan', 'minuman', 'pakaian']),
                 'toko' => $faker->company,
                 'no_hp' => $faker->phoneNumber,

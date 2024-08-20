@@ -37,6 +37,7 @@
                     <th>Judul</th>
                     <th>Gambar</th>
                     <th>Deskripsi</th>
+                    <th>Tanggal</th>
                     <th>Aksi</th>
                 </tr>   
                 </thead>
@@ -51,6 +52,7 @@
                                 </button>
                             </td>
                             <td class="min-w-96">{{ \Illuminate\Support\Str::limit($item->deskripsi, 500) }}</td>
+                            <td class="min-w-40">{{$item->tanggal}}</td>
                             <td>
                                 <form action="{{route('admin.berita.show',$item->id)}}">
                                     

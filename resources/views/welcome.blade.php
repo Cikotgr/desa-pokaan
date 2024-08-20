@@ -1,5 +1,5 @@
 <x-app-layout>
-<div class="hero md:min-h-96 " style="background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);">
+<div class="hero md:min-h-96 " style="background-image: url('{{asset('images/baldes.jpeg')}}');">
     <div class="hero-overlay bg-opacity-60"></div>
     <div class="hero-content text-neutral-content text-center">
     <div class="max-w-md ">
@@ -7,20 +7,22 @@
         <p class="mb-5">
         Pokaan Digital Center (POK-DC) adalah sebuah aplikasi berbasis web yang digunakan untuk memudahkan masyarakat dalam mengakses informasi dan layanan yang disediakan oleh Pemerintah Desa Pokaan.
         </p>
-        <button class="btn btn-primary">Get Started</button>
     </div>
 </div>
 </div>
 <div class="news p-4 md:p-28">
     <div class="grid grid-cols-1 md:grid-cols-6">
-        <div class="flex flex-col p-4 col-span-4">
-            <h1 class="font-bold flex text-3xl">Berita 
-                <span class="flex items-center ms-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-                </span>
-            </h1>
+        <div class="flex flex-col p-4 md:col-span-4">
+            <a href="{{route('berita.index')}}">
+                <h1 class="font-bold flex text-3xl">Berita 
+                    <span class="flex items-center ms-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                    </span>
+                </h1>
+            </a>
+            
             <div class="divider"></div>
             @foreach ($berita as $item)
             <div class="card card-compact md:card-side bg-base-100 shadow-xl mt-6">
@@ -28,7 +30,7 @@
                 <div class="h-36 w-full md:w-96 md:h-60" style="background-image: url('{{asset($item->gambar)}}'); background-size: cover; background-position: center"></div>
                 </figure>
                 <div class="card-body md:max-w-xl">
-                <a class="font-bold link link-hover text-lg md:card-title">{{$item->judul}}</a>
+                <a href="{{route('berita.view',$item->id)}}" class="font-bold link link-hover text-lg md:card-title">{{$item->judul}}</a>
                 <p>{{ \Illuminate\Support\Str::limit($item->deskripsi, 500) }}</p>
                 <div class="card-actions justify-end">
                     <div class="badge badge-primary badge-lg">
@@ -38,44 +40,52 @@
                             </svg>                              
                         </svg>
                         </span>
-                        {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y') }}</div>
+                        {{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</div>
                 </div>
                 </div>
             </div>
             @endforeach
             
         </div>
-        <div class="grid grid-cols-1 col-span-2">
-            <div class="flex flex-col allert p-4 mx-auto">
-                <h1 class="font-bold text-3xl flex">Pengumuman
-                    <span class="flex items-center ms-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                    </span>
-                </h1>
+        <div class="grid grid-cols-1 md:col-span-2">
+            <div class="px-6 pt-4">
+                <a href="{{route('berita.pengumuman')}}">
+
+                    <h1 class="font-bold text-3xl flex">Pengumuman
+                        <span class="flex items-center ms-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                        </span>
+                    </h1>
+                </a>
                 <div class="divider"></div>
                 @foreach ($pengumuman as $item)
                     <div class="card-compact bg-primary text-primary-content md:w-96 mt-4 ">
-                        <div class="card-body">
-                        <p class="font-bold text-lg">{{$item->judul}}</p>
-                        </div>
+                        <a href="{{route('berita.view',$item->id)}}">
+
+                            <div class="card-body">
+                                <p class="font-bold text-lg">{{$item->judul}}</p>
+                            </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
             
             <div class="agenda p-6">
-                <h1 class="font-bold text-3xl flex">Agenda
-                    <span class="flex items-center ms-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                    </span>
-                </h1>
+                <a href="{{route('berita.agenda')}}">
+                    <h1 class="font-bold text-3xl flex">Agenda
+                        <span class="flex items-center ms-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                        </span>
+                    </h1>
+                </a>
                 <div class="divider"></div>
                 @foreach ($agenda as $item)
                 <div class="mt-4">
-                    <div class="badge badge-primary badge-outline">{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y') }}</div>
+                    <div class="badge badge-primary badge-outline">{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</div>
                     <div class="col-span-2">
                         <a class="font-bold">{{$item->judul}}</a>
                         <p><span>Lokasi : </span>{{$item->lokasi}}</p>
@@ -86,54 +96,28 @@
         </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-6 pt-12">
-      <div class="md:col-span-4 p-6">
-        <h1 class="font-bold text-3xl flex">Galeri Foto
+    <div class="md:col-span-4 p-6">
+        <a href="{{route('galeri.index')}}" class="font-bold text-3xl flex">Galeri Foto
             <span class="flex items-center ms-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
             </span>
-        </h1>
+        </a>
         <div class="divider"></div>
         <div class="max-w-5xl mx-auto py-8 px-4">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-1">
-              <div class="relative">
-                <div class=" h-64 bg-no-repeat bg-center bg-cover" style="background-image: url('https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp')"></div>
-                  <div class="absolute bottom-0 bg-blue-800 bg-opacity-75 w-full text-white text-lg p-2">
-                      TP PKK Lapeo
-                  </div>
-              </div>
-              <div class="relative">
-                <div class=" h-64 bg-no-repeat bg-center bg-cover" style="background-image: url('https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp')"></div>
-                  <div class="absolute bottom-0 bg-blue-800 bg-opacity-75 w-full text-white text-lg p-2">
-                      Lapeo Bahari Festival 2022
-                  </div>
-              </div>
-              <div class="relative">
-                <div class=" h-64 bg-no-repeat bg-center bg-cover" style="background-image: url('https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp')"></div>
-                  <div class="absolute bottom-0 bg-blue-800 bg-opacity-75 w-full text-white text-lg p-2">
-                      Makam K.H. Muhammad Tahir (Imam Lapeo)
-                  </div>
-              </div>
-              <div class="relative">
-                <div class=" h-64 bg-no-repeat bg-center bg-cover" style="background-image: url('https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp')"></div>
-                  <div class="absolute bottom-0 bg-blue-800 bg-opacity-75 w-full text-white text-lg p-2">
-                      Wisata Reliqi, Masjid Nuruttaubah Lapeo
-                  </div>
-              </div>
-              <div class="relative">
-                <div class=" h-64 bg-no-repeat bg-center bg-cover" style="background-image: url('https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp')"></div>
-                  <div class="absolute bottom-0 bg-blue-800 bg-opacity-75 w-full text-white text-lg p-2">
-                      Wisata Pantai Lapeo, Perahu Sandeq
-                  </div>
-              </div>
-              <div class="relative">
-                <div class=" h-64 bg-no-repeat bg-center bg-cover" style="background-image: url('https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp')"></div>
-                  <div class="absolute bottom-0 bg-blue-800 bg-opacity-75 w-full text-white text-lg p-2">
-                      Objek Wisata Kabupaten Polman, Desa Lapeo
-                  </div>
-              </div>
-          </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-1">
+            @foreach ($galeri as $item)
+            <div class="relative">
+                <div class=" h-48 bg-no-repeat bg-center bg-cover" style="background-image: url('{{asset($item->foto)}}')"></div>
+                <div class="absolute bottom-0 bg-blue-800 bg-opacity-55 w-full text-white text-lg p-2">
+                    {{$item->judul}}
+                </div>
+            </div>
+            @endforeach
+            
+            
+        </div>
       </div>
       </div>
       <div class="md:col-span-2 p-6">
@@ -146,36 +130,22 @@
         </h1>
         <div class="divider"></div>
         <div class="max-w-xs mt-12 bg-white shadow-lg rounded-lg overflow-hidden min-w-80 min-h-80 mx-auto">
-          <div class="relative">
+            <div class="relative">
             <div id="carousel" class="flex transition-transform duration-500 ease-out">
+                @foreach ($perangkat as $item)
                 <div class="carousel-item w-full ">
-                  <div class="card-carousel w-full">
-                    <div class=" h-64 bg-no-repeat bg-center bg-cover" style="background-image: url({{asset('images/nopal-kopyah.jpg')}})"></div>
+                    <div class="card-carousel w-full">
+                    <div class=" h-64 bg-no-repeat bg-center bg-cover" style="background-image: url({{asset($item->foto)}})"></div>
                     
                     <div class="p-4 text-center">
-                      <p class="text-gray-800 font-bold">Nopal Kopyah</p>
-                      <p class="text-gray-800">Kepala Pengayom janda</p>
+                        <p class="text-gray-800 font-bold">{{$item->nama}}</p>
+                        <p class="text-gray-800">{{$item->jabatan}}</p>
                     </div>
-                  </div>
-                </div>
-                <div class="carousel-item w-full ">
-                  <div class="card-carousel">
-                    <img class="w-full h-64 object-cover" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Image 1">
-                    <div class="p-4 text-center">
-                      <p class="text-gray-800 font-bold">Sepatu sebelah</p>
-                      <p class="text-gray-800">Bagian pengaman kaki</p>
                     </div>
-                  </div>
                 </div>
-                <div class="carousel-item w-full ">
-                  <div class="card-carousel">
-                    <img class="w-full h-64 object-cover" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Image 1">
-                    <div class="p-4 text-center">
-                      <p class="text-gray-800 font-bold">Sepatu sebelah</p>
-                      <p class="text-gray-800">Bagian pengaman kaki</p>
-                    </div>
-                  </div>
-                </div>
+                @endforeach
+                
+                
             </div>
             <button id="prev" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 p-2">
                 &#10094;
@@ -187,118 +157,30 @@
         </div>
       </div>
     </div>
-    <div class="produk pt-12">
-        <h1 class="text-center text-3xl font-bold mb-6 flex items-center">Produk Inovatif
+    <div class="produk pt-12 px-6">
+        <a href="{{route('produk.index')}}" class="text-center text-3xl font-bold mb-6 flex items-center">Produk Inovatif
             <span class="flex items-center ms-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
             </span>
-        </h1>
+        </a>
         <div class="divider"></div>
-        <div class="flex">
-            <div class="w-2/12 flex items-center">
-                <div class="w-full text-right">
-                    <button id="prev-produk">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                    </button>
-                </div>
+        <div class="carousel carousel-end rounded-box">
+            @foreach ($produk as $item)
+            <div class="carousel-item">
+                <img class="w-full h-64 object-cover"
+                src="{{asset($item->gambar)}}"
+                alt="Drink" />
             </div>
-            <div id="sliderContainer" class="w-10/12 overflow-hidden">
-                <ul id="slider" class="flex w-full transition-margin duration-700">
-                    <li class="p-5">
-                        <div class="card bg-base-100 image-full w-96 shadow-xl">
-                            <figure>
-                            <img
-                                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                alt="Shoes" />
-                            </figure>
-                            <div class="card-body">
-                                <h2 class="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div class="card-actions justify-end">
-                                <button class="btn btn-primary">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="p-5">
-                        <div class="card bg-base-100 image-full w-96 shadow-xl">
-                            <figure>
-                            <img
-                                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                alt="Shoes" />
-                            </figure>
-                            <div class="card-body">
-                                <h2 class="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div class="card-actions justify-end">
-                                <button class="btn btn-primary">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="p-5">
-                        <div class="card bg-base-100 image-full w-96 shadow-xl">
-                            <figure>
-                            <img
-                                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                alt="Shoes" />
-                            </figure>
-                            <div class="card-body">
-                                <h2 class="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div class="card-actions justify-end">
-                                <button class="btn btn-primary">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="p-5">
-                        <div class="card bg-base-100 image-full w-96 shadow-xl">
-                            <figure>
-                            <img
-                                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                alt="Shoes" />
-                            </figure>
-                            <div class="card-body">
-                                <h2 class="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div class="card-actions justify-end">
-                                <button class="btn btn-primary">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="p-5">
-                        <div class="card bg-base-100 image-full w-96 shadow-xl">
-                            <figure>
-                            <img
-                                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                alt="Shoes" />
-                            </figure>
-                            <div class="card-body">
-                                <h2 class="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div class="card-actions justify-end">
-                                <button class="btn btn-primary">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="w-2/12 flex items-center">
-                <div class="w-full text-left">
-                    <button id="next-produk"> 
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
+            @endforeach            
+        </div>
+        <div class="w-full flex justify-center">
+            <h1>Geser gambar untuk lihat produk yang lain</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+            </svg>
+            
         </div>
     </div>
     <div class="advice pt-12">
@@ -423,42 +305,7 @@
         updateCarousel();
     }, intervalTime);
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let sliderContainer = document.getElementById('sliderContainer');
-            let slider = document.getElementById('slider');
-            let cards = slider.getElementsByTagName('li');
     
-            let elemenToShow = 3;
-            let sliderContainerWidth = sliderContainer.clientWidth;
-            console.log(sliderContainerWidth);
-            let cardWidth = sliderContainerWidth / elemenToShow;
-            console.log(cardWidth);
-            slider.style.width = cards.length * cardWidth + 'px';
-    
-            function prev() {
-            let currentMarginLeft = parseInt(slider.style.marginLeft || 0, 10);
-                if (currentMarginLeft + cardWidth > 0) {
-                    slider.style.marginLeft = -(cards.length - elemenToShow) * cardWidth + 'px';
-                } else {
-                    slider.style.marginLeft = (currentMarginLeft + cardWidth) + 'px';
-                }
-            }
-
-            function next() {
-                let currentMarginLeft = parseInt(slider.style.marginLeft || 0, 10);
-                if (Math.abs(currentMarginLeft - cardWidth) >= (cards.length - elemenToShow) * cardWidth) {
-                    slider.style.marginLeft = '0px';
-                } else {
-                    slider.style.marginLeft = (currentMarginLeft - cardWidth) + 'px';
-                }
-            }
-    
-            // Attach functions to buttons or other elements as needed
-            document.getElementById('prev-produk').addEventListener('click', prev);
-            document.getElementById('next-produk').addEventListener('click', next);
-        });
-    </script>
     
 </div>
 

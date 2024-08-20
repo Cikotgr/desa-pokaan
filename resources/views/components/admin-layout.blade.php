@@ -67,18 +67,6 @@
                     </li>
                     <li><a class="font-bold text-lg">Produk</a></li>
                     <li>
-                    <details>
-                        <summary class="font-bold text-lg">Informasi</summary>
-                        <ul class="bg-base-100 rounded-t-none p-2">
-                            <li><a href="{{route('berita.index')}}" class="{{Route::is('berita.index') ? 'active' : ''}}">Berita</a></li>
-                            <li><a href="{{route('berita.pengumuman')}}" class="{{Route::is('berita.pengumuman') ? 'active' : ''}}">Pengumuman</a></li>
-                            <li><a href="{{route('berita.agenda')}}" class="{{Route::is('berita.agenda') ? 'active' : ''}}">Agenda</a></li>
-                        
-                        </ul>
-                    </details>
-                    </li>
-                    <li><a href="{{route('produk.index')}}" class="font-bold text-lg {{Route::is('produk.index') ? 'active' : ''}}">Produk</a></li>
-                    <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="btn btn-sm">Logout</button>

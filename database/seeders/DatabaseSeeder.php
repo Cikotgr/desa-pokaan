@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('Pokaan899_'),
         ]);
 
-        // $this->call(PesanSeeder::class);
-        // $this->call(InformasiSeeder::class);
-        // $this->call(ProdukSeeder::class);
+        $this->call(PesanSeeder::class);
+        $this->call(InformasiSeeder::class);
+        $this->call(ProdukSeeder::class);
     }
 }

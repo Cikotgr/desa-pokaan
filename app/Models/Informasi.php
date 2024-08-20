@@ -10,5 +10,5 @@ class Informasi extends Model
     use HasFactory;
 
     protected $table = 'informasi';
-    protected $fillable = ['judul', 'deskripsi', 'gambar', 'jenis', 'lokasi'];
+    protected $fillable = ['judul', 'deskripsi', 'gambar', 'jenis','tanggal', 'lokasi'];
 }
